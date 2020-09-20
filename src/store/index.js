@@ -48,6 +48,7 @@ export default new Vuex.Store({
         }],
         playList: [],
         selectList: [],
+        removeList: [],
         Appear: true
     },
     mutations: {
@@ -85,6 +86,10 @@ export default new Vuex.Store({
             state.selectList.push(selectId);
             console.log(state.selectList);
         },
+        moveToRemoveList: function(state, selectId) {
+            state.removeList.push(selectId);
+            console.log(state.removeList);
+        },
         selectListToPlayList: function(state) {
             console.log("move");
             let num = state.selectList.length;
@@ -96,6 +101,38 @@ export default new Vuex.Store({
                         state.selectList.splice(0, 1);
                     }
                 }
+            }
+        },
+        removeListToSongList: function(state) {
+            let num = state.removeList.length;
+            for (let j = 0; j < num; j++) {
+                for (let i = 0; i < state.playList.length; i++) {
+                    if (state.removeList[0] === state.playList[i].id) {
+                        state.songList.push(state.playList[i]);
+                        state.playList.splice(i, 1);
+                        state.removeList.splice(0, 1);
+                    }
+                }
+            }
+        },
+        selectAll: function(state) {
+            for (let i = 0; i < state.songList.length; i++) {
+                console.log(state.songList[i]);
+                state.selectList.push(state.songList[i].id);
+            }
+            let multi = document.getElementsByClassName('select');
+            for (let i = 0; i < multi.length; i++) {
+                multi[i].checked = true;
+            }
+        },
+        removeAll: function(state) {
+            for (let i = 0; i < state.playList.length; i++) {
+                console.log(state.playList[i]);
+                state.removeList.push(state.playList[i].id);
+            }
+            let multiRemove = document.getElementsByClassName('select-remove');
+            for (let i = 0; i < multiRemove.length; i++) {
+                multiRemove[i].checked = true;
             }
         }
     },

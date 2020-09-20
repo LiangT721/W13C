@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input class="select" type="checkbox" @click="mutiSelect">
+        <input class="select" type="checkbox" @click="multiSelect" >
         <div @click="getID">
         <p>{{ "NO:" + song.id }}</p>
         <p>{{ "Artist:" + song.artist }}</p>
@@ -27,7 +27,7 @@ export default {
         getID: function() {
            this.$store.commit('moveSong',this.song.id)
         },
-        mutiSelect:function(){
+        multiSelect:function(){
             this.$store.commit('moveToSelectList',this.song.id)
         }
     }
@@ -54,7 +54,7 @@ input{
     width: 20px;
     height: 20px;
 }
-/* .mutiAppear{
+/* .multiAppear{
     display: inline;
 } */
 .songs:nth-child(2n){

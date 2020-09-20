@@ -1,8 +1,11 @@
 <template>
+<div>
+    <input type="checkbox" class="select-remove" @click="multiRemove">
     <div @click="getIDBack">
         <p>{{ "NO:" + song.id }}</p>
         <p>{{ "Artist:" + song.artist }}</p>
         <p>{{ "Song Name:" + song.songName }}</p>
+    </div>
     </div>
 </template>
 
@@ -19,6 +22,9 @@ export default {
         getIDBack: function() {
             this.$store.commit('moveSongBack',this.song.id);
             this.$store.commit('songSorting');
+        },
+          multiRemove:function(){
+            this.$store.commit('moveToRemoveList',this.song.id)
         }
     }
 }
@@ -30,6 +36,7 @@ export default {
     padding: 0;
 }
 .playsongs{
+     position: relative;
     box-sizing: border-box ;
     padding: 10px 0 5px 60px;
     background-color: lightgreen;
@@ -38,6 +45,14 @@ export default {
 
 .playsongs:nth-child(2n){
     background-color: lightskyblue;
+}
+input{
+    display: none;
+    position: absolute;
+    left: 20px;
+    top: 25px;
+    width: 20px;
+    height: 20px;
 }
 
 </style>

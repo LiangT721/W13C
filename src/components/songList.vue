@@ -1,11 +1,11 @@
 <template>
-    <div>
+    <div id="page-songlist">
        <h2>Song List</h2>
-       <button @click="toggleSelectMode">Muti Select</button>
+       <button @click="SelectAll" id="select-all">All</button>
        <div id="songlist">
           <songlist-song class="songs" v-for="song in list" v-bind:key="song.id" :song=song></songlist-song>
        </div>
-       <button @click="moveToPlayList">Add to PlayList</button>
+       <img @click="moveToPlayList" id="add" src="../assets/right-arrow.png">
     </div>
 </template>
 
@@ -35,18 +35,24 @@ export default {
             this.$store.commit('selectListToPlayList');
         },
         toggleSelectMode: function(){
-            let muti = document.getElementsByClassName('select');
+            let multi = document.getElementsByClassName('select');
+            let selectAll = document.getElementById('select-all');
                 if(this.disappear === true){
-                  for(let i = 0 ; i < muti.length; i++ ){
-                     muti[i].style.display = "inline";
+                  selectAll.style.display = "inline";
+                  for(let i = 0 ; i < multi.length; i++ ){
+                     multi[i].style.display = "inline";
                      this.disappear = false;
                   }
                 }else if(this.disappear === false){
-                  for(let i = 0 ; i < muti.length; i++ ){
-                     muti[i].style.display = "none";
+                  selectAll.style.display = "none";
+                  for(let i = 0 ; i < multi.length; i++ ){
+                     multi[i].style.display = "none";
                      this.disappear = true;
                   }
                } 
+        },
+        SelectAll:function(){
+            this.$store.commit('selectAll')
         }
     }
 
@@ -65,13 +71,35 @@ h2{
     font-size: 2rem;
     text-transform: uppercase;
 }
+#page-songlist{
+    position: relative;
+}
 #songlist{
+    margin-top: 20px;
     width: 40vw;
     height: 700px;
     background-color: rgba(135, 206, 250, 0.37);
     border-radius: 30px;
     overflow: hidden;  
 }
+#select-all{
+    display: none;
+    position:absolute;
+    top:20px;
+    left: 5px;
+    display: none;
+    width: 50px;
+    height: 30px;
+    border-radius: 15px;
+}
+#add{
+    width: 12vw;
+    height: 8vw;
+    position: relative;
+    top: 2vh;
+    left: 14vw;
+}
+
 
 
 
