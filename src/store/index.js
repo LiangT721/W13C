@@ -46,7 +46,9 @@ export default new Vuex.Store({
             artist: "Bad Boy",
             songName: "Riton & Kah-Lo"
         }],
-        playList: []
+        playList: [],
+        selectList: [],
+        Appear: true
     },
     mutations: {
         moveSong: function(state, selectId) {
@@ -78,6 +80,23 @@ export default new Vuex.Store({
                 return comparision
             }
             state.songList.sort(compare);
+        },
+        moveToSelectList: function(state, selectId) {
+            state.selectList.push(selectId);
+            console.log(state.selectList);
+        },
+        selectListToPlayList: function(state) {
+            console.log("move");
+            let num = state.selectList.length;
+            for (let j = 0; j < num; j++) {
+                for (let i = 0; i < state.songList.length; i++) {
+                    if (state.selectList[0] === state.songList[i].id) {
+                        state.playList.push(state.songList[i]);
+                        state.songList.splice(i, 1);
+                        state.selectList.splice(0, 1);
+                    }
+                }
+            }
         }
     },
     actions: {
