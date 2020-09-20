@@ -50,24 +50,18 @@ export default new Vuex.Store({
     },
     mutations: {
         moveSong: function(state, selectId) {
-            console.log(state.songList)
-            console.log(selectId);
-            console.log(state.songList.length)
             for (let i = 0; i < state.songList.length; i++) {
                 if (state.songList[i].id === selectId) {
                     state.playList.push(state.songList[i]);
-                    this.state.songList.splice(i, 1);
+                    state.songList.splice(i, 1);
                 }
             }
         },
         moveSongBack: function(state, selectId) {
-            console.log(state.playList)
-            console.log(selectId);
-            console.log(state.playList.length)
             for (let i = 0; i < state.playList.length; i++) {
                 if (state.playList[i].id === selectId) {
                     state.songList.push(state.playList[i]);
-                    this.state.playList.splice(i, 1);
+                    state.playList.splice(i, 1);
                 }
             }
         },

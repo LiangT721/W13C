@@ -1,6 +1,6 @@
 <template>
     <div @click="getIDBack">
-       <p >{{ "NO:" + song.id }}</p>
+        <p>{{ "NO:" + song.id }}</p>
         <p>{{ "Artist:" + song.artist }}</p>
         <p>{{ "Song Name:" + song.songName }}</p>
     </div>
@@ -8,7 +8,7 @@
 
 <script>
 export default {
-    name: "songlist-song",
+    name: "playlist-song",
     props: {
         song:{
          type:Object,
@@ -31,7 +31,7 @@ export default {
 }
 .playsongs{
     box-sizing: border-box ;
-    padding: 10px 0 5px 30px;
+    padding: 10px 0 5px 60px;
     background-color: lightgreen;
     height: 70px;
 }

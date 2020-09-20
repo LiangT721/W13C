@@ -2,14 +2,13 @@
     <div>
        <h2>Song List</h2>
        <div id="songlist">
-          <songlist-song class="songs" v-for="song in list" v-bind:key="song.id" :song=song>        
-          </songlist-song>
+          <songlist-song class="songs" v-for="song in list" v-bind:key="song.id" :song=song></songlist-song>
        </div>
     </div>
 </template>
 
 <script>
-import SonglistSong from './songInList.vue'
+import SonglistSong from './theSongInList'
 
 export default {
     components: {

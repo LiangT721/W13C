@@ -8,7 +8,7 @@
 
 <script>
 export default {
-    name: "playlist-song",
+    name: "songlist-song",
     props: {
         song:{
          type:Object,
@@ -18,7 +18,6 @@ export default {
 
     methods:{
         getID: function() {
-            console.log(this.song.id);
            this.$store.commit('moveSong',this.song.id)
         }
     }
@@ -32,7 +31,7 @@ export default {
 }
 .songs{
     box-sizing: border-box ;
-    padding: 10px 0 5px 30px;
+    padding: 10px 0 5px 60px;
     background-color: lightgreen;
     height: 70px;
 }
