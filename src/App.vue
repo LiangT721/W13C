@@ -1,28 +1,37 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <h1>Music PlayList</h1>
+    <div id="playArea">
+    <page-songlist></page-songlist>
+    <page-playlist></page-playlist>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+
+  import PageSonglist from './components/songList.vue'
+  import PagePlaylist from './components/playList.vue'
 
 export default {
+
   name: "App",
   components: {
-    HelloWorld
+    PageSonglist,
+    PagePlaylist
   }
 };
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+#playArea{
+  display: grid;
+  justify-items: center;
+  align-items: start;
+  grid-template-columns: 1fr 1fr;
+}
+h1{
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  text-transform: uppercase;
 }
 </style>
