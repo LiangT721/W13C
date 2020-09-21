@@ -1,7 +1,7 @@
 <template>
    <div id="page-playlist">
        <h2>Play List</h2>
-       <button @click="SelectAllRemove" id="select-all-play">All</button>
+       <button @click="SelectAllRemove" id="select-all-play"  :class="{isDisappeared: isDisappeared}">All</button>
        <div id="playlist">   
           <playlist-song class="playsongs" v-for="song in plays" v-bind:key="song.id" :song=song>         
           </playlist-song>
@@ -12,7 +12,6 @@
 
 <script>
 import PlaylistSong from './theSongInPlayList.vue'
-
 export default {
     components: {
       PlaylistSong
@@ -32,6 +31,11 @@ export default {
         },
         SelectAllRemove:function(){
             this.$store.commit('removeAll')
+        }
+    },
+     computed:{
+        isDisappeared: function(){
+            return this.$store.state.disappear
         }
     }
 }
@@ -59,11 +63,11 @@ h2{
     overflow: hidden;
 }
 #select-all-play{
-    display: none;
+    /* display: none; */
     position:absolute;
     top:20px;
     left: 5px;
-    display: none;
+    /* display: none; */
     width: 50px;
     height: 30px;
     border-radius: 15px;
@@ -74,6 +78,9 @@ h2{
     position: relative;
     top: 2vh;
     left: 14vw;
+}
+.isDisappeared{
+    display: none;
 }
 
 

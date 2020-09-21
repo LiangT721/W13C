@@ -49,7 +49,7 @@ export default new Vuex.Store({
         playList: [],
         selectList: [],
         removeList: [],
-        Appear: true
+        disappear: true
     },
     mutations: {
         moveSong: function(state, selectId) {
@@ -134,10 +134,11 @@ export default new Vuex.Store({
             for (let i = 0; i < multiRemove.length; i++) {
                 multiRemove[i].checked = true;
             }
+        },
+        changeDisappear: function(state) {
+            state.disappear = !state.disappear
         }
     },
-    actions: {
-
-    },
+    actions: {},
     modules: {}
 });

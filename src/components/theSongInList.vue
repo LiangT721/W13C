@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input class="select" type="checkbox" @click="multiSelect" >
+        <input class="select" type="checkbox" @click="multiSelect"  :class="{isDisappeared: isDisappeared}">
         <div @click="getID">
         <p>{{ "NO:" + song.id }}</p>
         <p>{{ "Artist:" + song.artist }}</p>
@@ -18,17 +18,19 @@ export default {
          reuqired:true
         }
     },
-    data: function(){
-        return{
-            // Appear: this.$store.State.Appear
-        }
-    },
     methods:{
         getID: function() {
+            if(this.$store.state.disappear === true){
            this.$store.commit('moveSong',this.song.id)
+            }
         },
         multiSelect:function(){
             this.$store.commit('moveToSelectList',this.song.id)
+        }
+    },
+     computed:{
+        isDisappeared: function(){
+            return this.$store.state.disappear
         }
     }
 }
@@ -47,7 +49,7 @@ export default {
     height: 70px;
 }
 input{
-    display: none;
+    /* display: none; */
     position: absolute;
     left: 20px;
     top: 25px;
@@ -59,6 +61,9 @@ input{
 } */
 .songs:nth-child(2n){
     background-color: lightskyblue;
+}
+.isDisappeared{
+    display: none;
 }
 
 </style>

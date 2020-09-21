@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <h1>Music PlayList</h1>
-     <button @click="toggleSelectMode" id="multi">Multi Select</button>
+     <button @click="changeToggle" id="multi">Multi Select</button>
     <div id="playArea">
     <page-songlist></page-songlist>
     <page-playlist></page-playlist>
@@ -23,38 +23,43 @@ export default {
   },
   data: function(){
         return {
-            disappear:true
+            disappear:true,
+            appear:this.$store.state.appeared,
         }
   },
   methods:{
-    toggleSelectMode: function(){
-      console.log("dsdasd")
-            let multi = document.getElementsByClassName('select');
-            let multiRemove = document.getElementsByClassName('select-remove');
-            let selectAll = document.getElementById('select-all');
-            let removeAll = document.getElementById('select-all-play');
-                if(this.disappear === true){
-                  selectAll.style.display = "inline";
-                  removeAll.style.display = "inline";
-                  for(let i = 0 ; i < multi.length; i++ ){
-                     multi[i].style.display = "inline";
-                  }
-                  for(let i = 0 ; i < multiRemove.length; i++ ){
-                     multiRemove[i].style.display = "inline";
-                  }
-                     this.disappear = false;
-                }else if(this.disappear === false){
-                  selectAll.style.display = "none";
-                  removeAll.style.display = "none";
-                  for(let i = 0 ; i < multi.length; i++ ){
-                     multi[i].style.display = "none";
-                  }
-                  for(let i = 0 ; i < multiRemove.length; i++ ){
-                     multiRemove[i].style.display = "none";
-                  }
-                     this.disappear = true;
-               } 
-        },
+       changeToggle: function(){
+         this.$store.commit('changeDisappear')
+        //  this.$store.commit('toggleSelectMode')
+       }
+    // toggleSelectMode: function(){
+    //   console.log("dsdasd")
+    //         let multi = document.getElementsByClassName('select');
+    //         let multiRemove = document.getElementsByClassName('select-remove');
+    //         let selectAll = document.getElementById('select-all');
+    //         let removeAll = document.getElementById('select-all-play');
+    //             if(this.disappear === true){
+    //               selectAll.style.display = "inline";
+    //               removeAll.style.display = "inline";
+    //               for(let i = 0 ; i < multi.length; i++ ){
+    //                  multi[i].style.display = "inline";
+    //               }
+    //               for(let i = 0 ; i < multiRemove.length; i++ ){
+    //                  multiRemove[i].style.display = "inline";
+    //               }
+    //                  this.disappear = false;
+    //             }else if(this.disappear === false){
+    //               selectAll.style.display = "none";
+    //               removeAll.style.display = "none";
+    //               for(let i = 0 ; i < multi.length; i++ ){
+    //                  multi[i].style.display = "none";
+    //               }
+    //               for(let i = 0 ; i < multiRemove.length; i++ ){
+    //                  multiRemove[i].style.display = "none";
+    //               }
+    //                  this.disappear = true;
+    //            } 
+    //     },
   },
 };
 </script>

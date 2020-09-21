@@ -1,7 +1,7 @@
 <template>
     <div id="page-songlist">
        <h2>Song List</h2>
-       <button @click="SelectAll" id="select-all">All</button>
+       <button @click="SelectAll" id="select-all" :class="{isDisappeared: isDisappeared}">All</button>
        <div id="songlist">
           <songlist-song class="songs" v-for="song in list" v-bind:key="song.id" :song=song></songlist-song>
        </div>
@@ -26,7 +26,6 @@ export default {
     data: function(){
         return {
             list: this.$store.state.songList,
-            disappear:true
         }
     },
     methods:{
@@ -34,25 +33,14 @@ export default {
             console.log('list');
             this.$store.commit('selectListToPlayList');
         },
-        toggleSelectMode: function(){
-            let multi = document.getElementsByClassName('select');
-            let selectAll = document.getElementById('select-all');
-                if(this.disappear === true){
-                  selectAll.style.display = "inline";
-                  for(let i = 0 ; i < multi.length; i++ ){
-                     multi[i].style.display = "inline";
-                     this.disappear = false;
-                  }
-                }else if(this.disappear === false){
-                  selectAll.style.display = "none";
-                  for(let i = 0 ; i < multi.length; i++ ){
-                     multi[i].style.display = "none";
-                     this.disappear = true;
-                  }
-               } 
-        },
+
         SelectAll:function(){
             this.$store.commit('selectAll')
+        }
+    },
+    computed:{
+        isDisappeared: function(){
+            return this.$store.state.disappear
         }
     }
 
@@ -83,11 +71,9 @@ h2{
     overflow: hidden;  
 }
 #select-all{
-    display: none;
     position:absolute;
     top:20px;
     left: 5px;
-    display: none;
     width: 50px;
     height: 30px;
     border-radius: 15px;
@@ -99,6 +85,10 @@ h2{
     top: 2vh;
     left: 14vw;
 }
+.isDisappeared{
+    display: none;
+}
+
 
 
 
