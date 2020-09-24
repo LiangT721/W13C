@@ -3,8 +3,10 @@
        <h2>Play List</h2>
        <button @click="SelectAllRemove" id="select-all-play"  :class="{isDisappeared: isDisappeared}">All</button>
        <div id="playlist">   
+          <transition-group name="playlist">
           <playlist-song class="playsongs" v-for="song in plays" v-bind:key="song.id" :song=song>         
           </playlist-song>
+          </transition-group>
        </div>
         <img @click="Remove" id="remove" src="../assets/left-arrow.png">
     </div>
@@ -18,11 +20,11 @@ export default {
     },
     name: "page-playlist",
 
-    data: function(){
-        return {
-            plays: this.$store.state.playList,
-        }
-    },
+    // data: function(){
+    //     return {
+    //         plays: this.$store.state.playList,
+    //     }
+    // },
     methods:{
         Remove: function(){
             console.log('list');
@@ -36,6 +38,9 @@ export default {
      computed:{
         isDisappeared: function(){
             return this.$store.state.disappear
+        },
+        plays: function(){
+            return this.$store.state.playList
         }
     }
 }
@@ -81,6 +86,12 @@ h2{
 }
 .isDisappeared{
     display: none;
+}
+.playlist-enter, .playlist-leave-to{
+    transform: translateX(-100%);
+}
+.playlist-enter-active, .playlist-leave-active{
+    transition: transform 1s;
 }
 
 

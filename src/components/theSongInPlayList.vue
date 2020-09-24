@@ -1,5 +1,5 @@
 <template>
-<div>
+<div :id='"play" + song.id' class="playsongs">
     <input type="checkbox" class="select-remove" @click="multiRemove"  :class="{isDisappeared: isDisappeared}">
     <div @click="getIDBack">
         <p>{{ "NO:" + song.id }}</p>
@@ -48,6 +48,8 @@ export default {
     padding: 10px 0 5px 60px;
     background-color: lightgreen;
     height: 70px;
+    
+    
 }
 
 .playsongs:nth-child(2n){
@@ -64,4 +66,16 @@ input{
     display: none;
 }
 
+
+
+</style>
+<style>
+@keyframes moveToPlay{
+    0%{
+        transform: translateX(-100%);
+    }
+    100%{
+        transform: translateX(0);
+    }
+}
 </style>

@@ -46,13 +46,24 @@ export default new Vuex.Store({
             artist: "Bad Boy",
             songName: "Riton & Kah-Lo"
         }],
-        playList: [],
+        playList: [
+            //     {
+            //     id: 9,
+            //     artist: "Policeman",
+            //     songName: "Eva Simons"
+            // }, {
+            //     id: 10,
+            //     artist: "Bad Boy",
+            //     songName: "Riton & Kah-Lo"
+            // }
+        ],
         selectList: [],
         removeList: [],
         disappear: true
     },
     mutations: {
         moveSong: function(state, selectId) {
+            console.log(selectId)
             for (let i = 0; i < state.songList.length; i++) {
                 if (state.songList[i].id === selectId) {
                     state.playList.push(state.songList[i]);
@@ -139,6 +150,25 @@ export default new Vuex.Store({
             state.disappear = !state.disappear
         }
     },
-    actions: {},
+    actions: {
+        // animationAdd: function(state, id) {
+        //     console.log(this.state.songList);
+        //     let objSong = document.getElementById("song" + id);
+        //     objSong.style.transform = "translateX(100%)";
+        //     let objPlay = document.getElementById("play" + id);
+        //     for (let i = 0; i < this.state.songList.length; i++) {
+        //         if (this.state.songList[i].id === id) {
+        //             this.state.playList.push(this.state.songList[i]);
+        //             setTimeout(() => {
+        //                 this.state.songList.splice(i, 1);
+        //             }, 600);
+        //         }
+        //     }
+        //     setTimeout(() => {
+        //         objPlay.style.animation = "moveToPlay 0.5s linear";
+        //     }, 250);
+
+        // }
+    },
     modules: {}
 });

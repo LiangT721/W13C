@@ -3,7 +3,9 @@
        <h2>Song List</h2>
        <button @click="SelectAll" id="select-all" :class="{isDisappeared: isDisappeared}">All</button>
        <div id="songlist">
+           <transition-group name="songlist">
           <songlist-song class="songs" v-for="song in list" v-bind:key="song.id" :song=song></songlist-song>
+          </transition-group>
        </div>
        <img @click="moveToPlayList" id="add" src="../assets/right-arrow.png">
     </div>
@@ -23,11 +25,11 @@ export default {
          reuqired:true
         }
     },
-    data: function(){
-        return {
-            list: this.$store.state.songList,
-        }
-    },
+    // data: function(){
+    //     return {
+    //         list: this.$store.state.songList,
+    //     }
+    // },
     methods:{
         moveToPlayList: function(){
             console.log('list');
@@ -41,6 +43,9 @@ export default {
     computed:{
         isDisappeared: function(){
             return this.$store.state.disappear
+        },
+        list: function(){
+            return this.$store.state.songList
         }
     }
 
@@ -88,10 +93,11 @@ h2{
 .isDisappeared{
     display: none;
 }
-
-
-
-
-
+.songlist-enter, .songlist-leave-to{
+    transform: translateX(100%);
+}
+.songlist-enter-active, .songlist-leave-active{
+    transition: transform 1s;
+}
 
 </style>>

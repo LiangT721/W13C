@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div :id='"song" + song.id' class="songs">
         <input class="select" type="checkbox" @click="multiSelect"  :class="{isDisappeared: isDisappeared}">
         <div @click="getID">
         <p>{{ "NO:" + song.id }}</p>
@@ -22,6 +22,7 @@ export default {
         getID: function() {
             if(this.$store.state.disappear === true){
            this.$store.commit('moveSong',this.song.id)
+        //    this.$store.dispatch('animationAdd',this.song.id, )
             }
         },
         multiSelect:function(){
@@ -47,6 +48,8 @@ export default {
     padding: 10px 0 5px 60px;
     background-color: lightgreen;
     height: 70px;
+    transition: all 0.5s linear;
+
 }
 input{
     /* display: none; */
